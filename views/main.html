@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <div id = 'day1'>
+		<script id = 'day1_script' src='https://unpkg.com/axios/dist/axios.min.js'>
+			const resUser = await axios.get('/user');
+			const users = resUser.data;
+			
+			const resTime = await axios.get('./time');
+			const times = resTime.data;
+			
+			const day = Date.now();
+			
+			times.map(function(time)){
+			
+					  
+				if(!document.querySelector("#{{time.email}}")){
+					const row = document.createElement('tr');
+					row.id = "{{time.email}}";
+					
+					row.appendChild();	// 날짜
+						
+					let td = document.createElement('td');
+					td.textContent = time.machine;		//장비
+					row.appendChild(td);
+						
+					td = document.createElement('td');
+					td.textContent = "{{time.email}}"		//유저
+					row.appendChild(td);
+				
+					for(int i = 7; i < 30; i++){
+						if(time.starttime < 7){
+							tmpTime = time.starttime + 24;
+						}  // 05-09, 21-01 일때는 
+						else{
+							tmpTime = time.starttime;
+						}
+						
+						td = document.createElement('td');
+						td.id = "day1_{{i}}";
+						if(time.starttime === i){
+							td.textContent(1);
+						}
+						else{
+							td.textContent(0);
+						}
+						row.appendChild(td);
+						
+					}npm 	
+				}
+				else{
+					const row = document.querySelector("#{{time.email}}");
+				
+			
+				}
+			}
+		</script>
+	</div>
+  </body>
+</html>
