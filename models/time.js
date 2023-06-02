@@ -16,6 +16,7 @@ module.exports = class Time extends Sequelize.Model {
 			email: {
 				type: Sequelize.STRING(40),
 				allowNull: false,
+				
 			},
 			
 			starttime: {
@@ -31,8 +32,8 @@ module.exports = class Time extends Sequelize.Model {
 			sequelize,
 			timestamps: true,
 			underscored: false,
-			modelName: 'User',
-			tableName: 'users',
+			modelName: 'Time',
+			tableName: 'times',
 			paranoid: true,
 			charset: 'utf8',
 			collate: 'utf8_general_ci',

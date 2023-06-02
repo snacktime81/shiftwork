@@ -1,5 +1,5 @@
 exports.isLoggedIn = (req, res, next) => {
-	if(req.isAuthenticatd()){
+	if(req.isAuthenticated()){
 		next();
 	}
 	else{
@@ -9,7 +9,7 @@ exports.isLoggedIn = (req, res, next) => {
 
 
 exports.isNotLoggedIn = (req, res, next) => {
-	if(!req.isAuthenticatd()){
+	if(!req.isAuthenticated()){
 		next();
 	}
 	else{
@@ -20,7 +20,7 @@ exports.isNotLoggedIn = (req, res, next) => {
 
 
 exports.isLoggedAdmin = (req, res, next) => {
-	if(req.isAuthenticatd()){
+	if(req.isAuthenticated()){
 		if(req.user.authority === 'Admin'){
 			next();
 		}

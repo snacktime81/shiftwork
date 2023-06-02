@@ -17,7 +17,7 @@ router.post('/make', async(req, res, next) => {
 		await Time.create({
 			machine,
 			day,
-			email:user.email,
+			email: user.email,
 			starttime,
 			endtime,
 		})

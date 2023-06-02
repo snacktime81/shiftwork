@@ -10,7 +10,7 @@ const passport = require('passport');
 dotenv.config();
 const pageRouter = require('./routes/page');
 const timeRouter = require('./routes/time');
-const joinRouter = require('./routes/join');
+const authRouter = require('./routes/auth');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 
@@ -46,20 +46,18 @@ app.use(session({
 	},
 }));
 
-app.use(passport.initalize());
-app.use(passort.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', pageRouter);
 app.use('/time', timeRouter);
-app.use('/join', joinRouter);
+app.use('/auth', authRouter);
 
 app.use((req, res, next) => {
   const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
   error.status = 404;
   next(error);
 })
-
-
 
 
 app.use((err, req, res, next) => {

@@ -5,12 +5,13 @@
     <title>{{title}}</title>
   </head>
   <body>
+	  <script>console.log('fnslef')</script>
     <div id = 'day1'>
 		<script id = 'day1_script' src='https://unpkg.com/axios/dist/axios.min.js'>
-			const resUser = await axios.get('/user');
+			const resUser = await axios.get('../models/user');
 			const users = resUser.data;
-			
-			const resTime = await axios.get('./time');
+			console.log(users);
+			const resTime = await axios.get('../models/time');
 			const times = resTime.data;
 			
 			const day = Date.now();
