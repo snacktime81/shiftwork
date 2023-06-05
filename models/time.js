@@ -9,14 +9,8 @@ module.exports = class Time extends Sequelize.Model {
 			},
 			
 			day: {
-				type: Sequelize.DATE,
+				type: Sequelize.DATEONLY,
 				allowNull: false,
-			},
-			
-			email: {
-				type: Sequelize.STRING(40),
-				allowNull: false,
-				
 			},
 			
 			starttime: {
@@ -28,6 +22,10 @@ module.exports = class Time extends Sequelize.Model {
 				type: Sequelize.INTEGER(10),
 				allowNull: false,
 			},
+						
+			// userId: {
+			// 	type: Sequelize.STRING(40),
+			// }
 		},{
 			sequelize,
 			timestamps: true,
@@ -38,7 +36,8 @@ module.exports = class Time extends Sequelize.Model {
 			charset: 'utf8',
 			collate: 'utf8_general_ci',
 		});
+	
 	}
 	static associate(db){
-		db.Time.belongsTo(db.User)}
+		db.Time.belongsTo(db.User, {foreignKey : 'userId'})}
 }

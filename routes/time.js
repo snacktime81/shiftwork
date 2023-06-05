@@ -12,14 +12,13 @@ router.get('/', (req, res, next) => {
 router.post('/make', async(req, res, next) => {
 	try{
 		const {machine, day, name, starttime, endtime} = req.body;
-		user = await User.findOne({where:{name}});
-		console.log(req.body);
+		const user = await User.findOne({where:{name}});
 		await Time.create({
 			machine,
 			day,
-			email: user.email,
 			starttime,
 			endtime,
+			userId: user.id,
 		})
 		
 		res.redirect('/time');

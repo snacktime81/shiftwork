@@ -35,6 +35,9 @@ router.post('/join', isNotLoggedIn, async(req, res, next) => {
 	}
 });
 
+router.get('/login', isNotLoggedIn, (req, res, next) => {
+	res.render('login');
+})
 
 router.post('/login', isNotLoggedIn, (req, res, next) => {
 	passport.authenticate('local', (authError, user, info) => {
@@ -50,16 +53,22 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
 				console.error(loginError);
 				return next(loginError);
 			}
-			return res.redirect('/');
+			return res.redirect('/l');
 		})
 	})(req, res, next);
 })
 
+
 router.get('/logout', isLoggedIn, (req, res, next) => {
-	req.logout();
-	req.session.destroy();
-	res.redirect('/');
-})
+  req.logOut(err => {
+    if (err) {
+      return next(err);
+    } else {
+      console.log('로그아웃됨.');
+      res.redirect('/');
+    }
+  });
+});
 
 
 

@@ -24,7 +24,8 @@ module.exports = class User extends Sequelize.Model {
 				type: Sequelize.STRING(10),
 				allowNull: false,
 				defaultValue: 'common',
-			}
+			},
+
 		}, {
 		  sequelize,
 		  timestamps: true,
@@ -39,7 +40,7 @@ module.exports = class User extends Sequelize.Model {
 	}
 	
 	static associate(db) {
-		db.User.hasMany(db.Time);
+		db.User.hasMany(db.Time, {foreignKey : 'userId'});
 	}
 	
 	

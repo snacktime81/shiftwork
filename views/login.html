@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>로그인 페이지</title>
+  <style>
+    body {
+      background-color: #fff;
+      color: #000;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #000;
+      color: #fff;
+      border: 1px solid #000;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>입력</h1>
+
+  <form action="/auth/login" method="POST">
+
+    <label for="email">email:</label>
+    <input type="email" id="email" name="email" required>
+	  
+	<label for="password">password:</label>
+    <input type="password" id="password" name="password" required>
+	<div>
+		<label>
+		</label>
+		<input type="submit" value="로그인">
+	</div>
+  </form>
+	
+</body>
+</html>
