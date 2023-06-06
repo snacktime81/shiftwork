@@ -9,7 +9,7 @@ const {Time, User} = require('../models');
 
 router.get('/', async(req, res, next) => {
 	try{
-		console.log(isLoggedIn);
+		
 		const times = await Time.findAll({
 			  include: [{
 				model: User,
@@ -17,33 +17,23 @@ router.get('/', async(req, res, next) => {
 			  }],
 			  order: [['starttime', 'ASC']],
 			});
-
+		
+		if(!req.isAuthenticated()){
 			res.render('main', {times});
-		
-	}
-	catch(err){
-		console.error(err);
-	}
-});
-
-router.get('/l', async(req, res, next) => {
-	try{
-		console.log(isLoggedIn);
-		const times = await Time.findAll({
-			  include: [{
-				model: User,
-				attributes: ['name'],
-			  }],
-			  order: [['starttime', 'ASC']],
-			});
-
+		}
+		else{
 			res.render('loggedMain', {times});
+		}
+
+			
 		
 	}
 	catch(err){
 		console.error(err);
 	}
 });
+
+
 
 router.get('/join', isNotLoggedIn, (req, res, next) => {
 	res.render('join', {title: 'join'});

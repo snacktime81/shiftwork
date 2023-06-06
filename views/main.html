@@ -46,9 +46,19 @@
   	</head>
 		<body>
 		<div class='container' id='join_button'>
+			
+				
+				
+			
 			<form action='/auth/login' method='get'>
 				<input type="submit" value="로그인">	
 			</form>
+			<script>
+				console.log(req.session);
+				// if(req.session){
+					
+				// }
+			</script>
 		</div>
 		<div id = 'day1' class='container'>
 			<table id = "day1Table">

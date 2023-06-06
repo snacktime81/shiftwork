@@ -53,7 +53,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
 				console.error(loginError);
 				return next(loginError);
 			}
-			return res.redirect('/l');
+			return res.redirect('/');
 		})
 	})(req, res, next);
 })
