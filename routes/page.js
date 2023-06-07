@@ -5,7 +5,7 @@ const {isLoggedIn, isNotLoggedIn, isLoggedAdmin} = require('./middlewares');
 const {Time, User} = require('../models');
 
 
-//https://study-ihl.tistory.com/103
+
 
 router.get('/', async(req, res, next) => {
 	try{
@@ -17,13 +17,9 @@ router.get('/', async(req, res, next) => {
 			  }],
 			  order: [['starttime', 'ASC']],
 			});
+
+		res.render('main', {times})
 		
-		if(!req.isAuthenticated()){
-			res.render('main', {times});
-		}
-		else{
-			res.render('loggedMain', {times});
-		}
 
 			
 		

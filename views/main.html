@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
  	<head>
-    	<meta charset="utf-8">
     	<title>{{title}}</title>
 		<style>
 			table {
@@ -43,63 +42,85 @@
 				cursor: pointer;
 			}
   		</style>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
   	</head>
-		<body>
+	<body>
 		<div class='container' id='join_button'>
-			
-				
-				
-			
-			<form action='/auth/login' method='get'>
-				<input type="submit" value="로그인">	
-			</form>
-			<script>
-				console.log(req.session);
-				// if(req.session){
-					
-				// }
-			</script>
 		</div>
-		<div id = 'day1' class='container'>
-			<table id = "day1Table">
-				<thead>
-					<tr>
-						<th>날짜</th>
-						<th>장비</th>
-						<th>이름</th>
-						{% set allOfTime = [7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,1,2,3,4,5,6] %}
-						{% for i in allOfTime %}
-							<th id={{ i }}>{{i}}</th>
-						{% endfor %}
-					</tr>
-				</thead>
-				<tbody>
-					{% for time in times %}
-					<tr>
-						<td> {{time.day}} </td>
-						<td>{{time.machine}}</td>
-						<td>{{time.User.name}}</td>
-						{% set allOfNum = [7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30] %}
-						{% set num = 7 %}
-						{% for i in allOfNum %}
-							{% if num > (time.starttime - 1) and (time.endtime ) > num %}
-								<td>1</td>
-							{% else %}
-								<td>0</td>
-							{% endif %}
-							{% set num = num + 1 %}
-						{% endfor %}
-					</tr>
+	<div id = 'day1' class='container'>
+		<table id = "day1Table">
+			<thead>
+				<tr>
+					<th>날짜</th>
+					<th>장비</th>
+					<th>이름</th>
+					{% set allOfTime = [7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,1,2,3,4,5,6] %}
+					{% for i in allOfTime %}
+						<th id={{ i }}>{{i}}</th>
 					{% endfor %}
-				</tbody>
-			</table>
+				</tr>
+			</thead>
+			<tbody>
+				{% for time in times %}
+				<tr>
+					<td> {{time.day}} </td>
+					<td>{{time.machine}}</td>
+					<td>{{time.User.name}}</td>
+					{% set allOfNum = [7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30] %}
+					{% set num = 7 %}
+					{% for i in allOfNum %}
+						{% if num > (time.starttime - 1) and (time.endtime ) > num %}
+							<td>1</td>
+						{% else %}
+							<td>0</td>
+						{% endif %}
+						{% set num = num + 1 %}
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 
+	</div>
+	<script>
+		async function axiosExample() {
+			const response = await axios.get('/auth/status');
+			const { data } = response;
+			console.log(data);
 
+			}
+		let status = axiosExample();
+			if(status){
+				const form = document.createElement('form');
+				form.action = 'auth/logout';
+				form.method = 'get';
+				form.id = 'loginForm';
+				const input = document.createElement('input');
+				input.type = 'submit';
+				input.value = '로그아웃';
+				
+				form.appendChild(input);
 
+				let div = document.querySelector('#join_button');
+				div.appendChild(form);
+			}
+			else{
+				let form = document.createElement('form');
+				form.action = 'auth/login';
+				form.method = 'get';
+				form.id = 'loginForm';
 
+				
+				let input = document.createElement('input');
+				input.type = 'submit';
+				input.value = '로그인';
+				
+				form.appendChild(input);
 
-			<script id = 'day1_script' src='https://unpkg.com/axios/dist/axios.min.js'>
-			</script>
-		</div>
+				let div = document.querySelector('#join_button');
+				div.appendChild(form);
+			}
+	</script>
 	</body>
 </html>

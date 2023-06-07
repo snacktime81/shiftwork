@@ -8,7 +8,14 @@ const User = require('../models/user');
 
 const router = express.Router();
 
-
+router.get('/status', (req, res, next) => {
+	if(req.isAuthenticated()){
+		res.json(true);
+	}
+	else{
+		res.json(false);
+	}
+})
 
 router.post('/join', isNotLoggedIn, async(req, res, next) => {
 	const { name, email, password, authority } = req.body;
