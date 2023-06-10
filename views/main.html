@@ -87,10 +87,13 @@
 		async function axiosExample() {
 			const response = await axios.get('/auth/status');
 			const { data } = response;
-			console.log(data);
+			return response;
 
 			}
-		let status = axiosExample();
+		axiosExample().then(function(re){
+			
+			const status = re.data
+			
 			if(status){
 				const form = document.createElement('form');
 				form.action = 'auth/logout';
@@ -121,6 +124,9 @@
 				let div = document.querySelector('#join_button');
 				div.appendChild(form);
 			}
+		});
+
+			
 	</script>
 	</body>
 </html>
