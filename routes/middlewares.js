@@ -21,7 +21,7 @@ exports.isNotLoggedIn = (req, res, next) => {
 
 exports.isLoggedAdmin = (req, res, next) => {
 	if(req.isAuthenticated()){
-		if(req.user.authority === 'Admin'){
+		if(req.user.authority === 'admin'){
 			next();
 		}
 		else{

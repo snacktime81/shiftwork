@@ -3,10 +3,19 @@ const User = require('../models/user');
 const Time = require('..//models/time');
 
 const router = express.Router();
-//const {isLoggedAdmin} = require('../middlewares');
+const {isLoggedAdmin} = require('./middlewares');
 
-router.get('/', (req, res, next) => {
+router.get('/', isLoggedAdmin, (req, res, next) => {
 	res.render('time', {title: 'time'});
+});
+
+router.get('/status', (req, res, next) => {
+	if(req.user.authority === 'admin'){
+		res.json(true);
+	}
+	else{
+		res.json(false);
+	}
 });
 
 router.post('/make', async(req, res, next) => {

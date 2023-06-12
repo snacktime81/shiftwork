@@ -17,12 +17,19 @@
 			 #color{
 			  background-color: #FFFF00;
 			}
-	
+			
+			#login_button{
+				position: relative;
+				left: 88%;	
+				float: left;
+				margin:1px;
+			
+			}
 			#join_button{
 				position: relative;
-				left: 90%;
-					
-				
+				left: 88%;	
+				float: left;
+				margin: 1px;
 			}
 		
 			.container {
@@ -42,6 +49,8 @@
 
   	</head>
 	<body>
+		<div class='container' id='login_button'>
+		</div>
 		<div class='container' id='join_button'>
 		</div>
 		<h1>
@@ -85,27 +94,53 @@
 	<script>
 		async function axiosExample() {
 			const response = await axios.get('/auth/status');
-			const { data } = response;
 			return response;
-
 			}
+		
+		async function axiosAuthStatus(){
+			const authStatus = await axios.get('/time/status');
+			return authStatus;
+		}
+		
+		
 		axiosExample().then(function(re){
 			
 			const status = re.data
-			
 			if(status){
-				const form = document.createElement('form');
+				let form = document.createElement('form');
 				form.action = 'auth/logout';
 				form.method = 'get';
 				form.id = 'loginForm';
-				const input = document.createElement('input');
+				
+				let input = document.createElement('input');
 				input.type = 'submit';
 				input.value = '로그아웃';
 				
 				form.appendChild(input);
 
-				let div = document.querySelector('#join_button');
+				let div = document.querySelector('#login_button');
 				div.appendChild(form);
+				
+				axiosAuthStatus().then(function(reAuth){
+					const authStatus = reAuth.data;
+					console.log(authStatus);
+					if(authStatus){
+						form = document.createElement('form');
+						form.action = '/time';
+						form.method = 'get';
+						form.id = 'joinForm';
+
+						input = document.createElement('input');
+						input.type = 'submit';
+						input.value = '시간생성';
+
+						form.appendChild(input);
+
+						div = document.querySelector('#join_button');
+						div.appendChild(form);
+					}
+				})
+				
 			}
 			else{
 				let form = document.createElement('form');
@@ -119,13 +154,28 @@
 				input.value = '로그인';
 				
 				form.appendChild(input);
+				
+				let div = document.querySelector('#login_button');
+				div.appendChild(form);
+				
+				
+				form = document.createElement('form');
+				form.action = '/join';
+				form.method = 'get';
+				form.id = 'joinForm';
+				
+				input = document.createElement('input');
+				input.type = 'submit';
+				input.value = '회원가입';
+				
+				form.appendChild(input);
 
-				let div = document.querySelector('#join_button');
+				div = document.querySelector('#join_button');
 				div.appendChild(form);
 			}
 		});
 
 			
-	</script>
+	</script>	
 	</body>
 </html>

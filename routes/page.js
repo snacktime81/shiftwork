@@ -15,9 +15,8 @@ router.get('/', async(req, res, next) => {
 				model: User,
 				attributes: ['name'],
 			  }],
-			  order: [['starttime', 'ASC']],
+			  order: [['machine', 'ASC'], ['starttime', 'ASC']],
 			});
-
 		res.render('main', {times})
 		
 
