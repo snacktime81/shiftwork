@@ -14,14 +14,10 @@
 			  border: 1px solid #ddd;
 			}
 	
-			th {
-			  background-color: #f2f2f2;
+			 #color{
+			  background-color: #FFFF00;
 			}
 	
-			tr:nth-child(even) {
-			  background-color: #f9f9f9;
-			}
-			
 			#join_button{
 				position: relative;
 				left: 90%;
@@ -48,6 +44,9 @@
 	<body>
 		<div class='container' id='join_button'>
 		</div>
+		<h1>
+			 Day 1
+		</h1>
 	<div id = 'day1' class='container'>
 		<table id = "day1Table">
 			<thead>
@@ -71,9 +70,9 @@
 					{% set num = 7 %}
 					{% for i in allOfNum %}
 						{% if num > (time.starttime - 1) and (time.endtime ) > num %}
-							<td>1</td>
+							<td id='color'></td>
 						{% else %}
-							<td>0</td>
+							<td></td>
 						{% endif %}
 						{% set num = num + 1 %}
 					{% endfor %}
