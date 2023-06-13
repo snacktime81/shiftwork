@@ -17,10 +17,10 @@ router.get('/', async(req, res, next) => {
 			  order: [['machine', 'ASC'], ['starttime', 'ASC']],
 			});
 		
-		const date = new Date();
+		const date = new Date();		
 		const nowMonth = date.getMonth();
 		const nowDay = date.getDate();
-		
+		console.log(date)
 		const deleteTime = async(id) => {
   			await Time.destroy({where: {id: id}}); 
 }

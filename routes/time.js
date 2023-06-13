@@ -22,11 +22,15 @@ router.post('/make', async(req, res, next) => {
 	try{
 		const {machine, day, name, starttime, endtime} = req.body;
 		const user = await User.findOne({where:{name}});
+		
+		const startTime = ((starttime < 7) ? Number(starttime) +24 : starttime);
+		const endTime = ((endtime <= 7) ? Number(endtime) + 24 : endtime)
+		
 		await Time.create({
 			machine,
 			day,
-			starttime,
-			endtime,
+			starttime: startTime,
+			endtime: endTime,
 			userId: user.id,
 		})
 		
