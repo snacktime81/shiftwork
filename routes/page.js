@@ -20,7 +20,7 @@ router.get('/', async(req, res, next) => {
 		const date = new Date();		
 		const nowMonth = date.getMonth();
 		const nowDay = date.getDate();
-		console.log(date)
+		console.log(new Date(date.getTime() + (2 * 60 * 60 * 1000)));
 		const deleteTime = async(id) => {
   			await Time.destroy({where: {id: id}}); 
 }
@@ -29,7 +29,7 @@ router.get('/', async(req, res, next) => {
 			const day = i.day.substring(8,10);
 			//console.log( day, month);
 			//console.log('now', nowDay, nowMonth);
-			if(month < nowMonth){
+			if(month < nowMonth){ 
 				deleteTime(i.id);
 			}
 			else if(day < nowDay){
