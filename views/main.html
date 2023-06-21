@@ -19,23 +19,33 @@
 			}
 			
 			#login_button{
-				position: relative;
-				left: 88%;	
-				float: left;
-				margin:1px;
-			
+				width:60px;
+				border-radius: 30%;		
+				text-align: center;
 			}
 			#join_button{
-				position: relative;
-				left: 88%;	
-				float: left;
+				width:80px;
 				margin: 1px;
+				border-radius: 10%
+				text-align: center;
 			}
-		
+			
 			.container {
 				display: flex;
+				align-items: center
 			}
+			
+			.container2 {
+				display: inline-flex;
+				flex-direction: column;
+			}
+			
+			.itemButton{
+				margin-left: auto;
+			}
+
 		
+			
 			input[type="submit"] {
 				width: 100%;
 				padding: 10px;
@@ -49,24 +59,45 @@
 
   	</head>
 	<body>
-		<div class='container' id='login_button'>
+		
+		<div class='container'>
+			
+			<div class='item'>
+				<h1> Day 1 </h1>
+			</div>
+		
+			<div class='itemButton' id='login_button'>
+			</div>
+			
+			<div class='itemButton2' id='join_button'>
+			</div>
+			
 		</div>
-		<div class='container' id='join_button'>
+		
+		<div class = 'container2'>
+			
+
+			
+			<div id = 'day1' class='item'>
+			</div>
+
+			<script src='/day1.js'>
+			</script>
 		</div>
 		
-		<h1>
-			 Day 1
-		</h1>
+		<div class='container2'>
+			
+			<h1 class='item'>
+				 Day 2
+			</h1>
+
+			<div id = 'day2' class='item'>
+			</div>
+
+			<script src='/day2.js'>
+			</script>
 		
-		<div id = 'day1' class='container'>
 		</div>
-		
-		<script src='/day1.js'>
-		</script>
-		
-		
-		
-		
 		
 	<script src="/script.js">	
 	</script>	
