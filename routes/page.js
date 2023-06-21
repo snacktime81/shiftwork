@@ -37,7 +37,7 @@ router.get('/', async(req, res, next) => {
 			}
 		}
 		
-		res.render('main', {times})
+		res.render('main')
 	}
 	catch(err){
 		console.error(err);
