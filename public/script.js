@@ -29,7 +29,7 @@ axiosExample().then(function(re){
 
 		axiosAuthStatus().then(function(reAuth){
 			const authStatus = reAuth.data;
-			console.log(authStatus);
+			//console.log(authStatus);
 			if(authStatus){
 				form = document.createElement('form');
 				form.action = '/time';
