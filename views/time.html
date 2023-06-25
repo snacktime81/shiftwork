@@ -2,44 +2,67 @@
 <html>
 <head>
   <title>시간 설정 페이지</title>
-  <style>
-    body {
-      background-color: #fff;
-      color: #000;
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
+	<style>
+		body {
+			background-color: #fff;
+			color: #000;
+			font-family: Arial, sans-serif;
+			padding: 20px;
+		}
 
-    h1 {
-      text-align: center;
-    }
+		h1 {
+		  text-align: center;
+		}
 
-    form {
-      max-width: 400px;
-      margin: 0 auto;
-    }
+		form {
+		  max-width: 400px;
+		  margin: 0 auto;
+		}
 
-    label {
-      display: block;
-      margin-bottom: 10px;
-    }
+		label {
+		  display: block;
+		  margin-bottom: 10px;
+		}
+	  
+		#timeAllButton{
+			width: 20%;
+			padding: 10px;
+			background-color: #111;
+			color: #fff;
+			border: 1px solid #000;
+			cursor: pointer;
+		}
+		input[type="submit"] {
+		  width: 100%;
+		  padding: 10px;
+		  background-color: #000;
+		  color: #fff;
+		  border: 1px solid #000;
+		  cursor: pointer;
+		}
 
-    input[type="submit"] {
-      width: 100%;
-      padding: 10px;
-      background-color: #000;
-      color: #fff;
-      border: 1px solid #000;
-      cursor: pointer;
-    }
+		input[type="submit"]:hover {
+		  background-color: #555;
+		}
 
-    input[type="submit"]:hover {
-      background-color: #555;
-    }
+		.container {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+		}
+
+		
+
   </style>
 </head>
 <body>
-  <h1>입력</h1>
+	<div>
+		<form action="time/all" method="get" class='container' >
+			<h1 class='item' id='timeMaking'>시간 만들기</h1>
+			<input type='submit' value="시간 보기" id='timeAllButton'>
+		</form>
+	</div>
 
   <form action="/time/make" method="POST">
     <label for="username">사용자명:</label>

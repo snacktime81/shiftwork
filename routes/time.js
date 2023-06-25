@@ -42,6 +42,17 @@ router.post('/make', async(req, res, next) => {
 
 })
 
+router.get('/all', async(req, res, next) => {
+	try{
+		const times = await Time.findAll({
+			order: [['starttime', 'ASC']],
+		});
+		res.render('allTime', {times});
+	}
+	catch(err){
+		console.error(err);
+	}
+})
 
 
 module.exports = router;
