@@ -42,10 +42,22 @@ router.post('/make', async(req, res, next) => {
 
 })
 
+router.delete('/delete', (req, res, next) => {
+	try{
+		console.log('qq')
+		res.json('q')
+	}
+	catch(err){}
+})
+
 router.get('/all', async(req, res, next) => {
 	try{
 		const times = await Time.findAll({
-			order: [['starttime', 'ASC']],
+			include: [{
+			model: User,
+			attributes: ['name'],
+			}],
+			order: [['day', 'ASC'], ['starttime', 'ASC']],
 		});
 		res.render('allTime', {times});
 	}

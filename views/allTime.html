@@ -49,7 +49,7 @@
 						<th>날짜</th>
 						<th>장비</th>
 						<th>이름</th>
-						{% set allOfTime = [07,08,09,010,11,12,13,14,15,16,17,18,19,20,21,22,23,24,01,02,03,04,05,06, 'update', 'delete'] %}
+						{% set allOfTime = [07,08,09,010,11,12,13,14,15,16,17,18,19,20,21,22,23,24,01,02,03,04,05,06, 'delete'] %}
 						{% for i in allOfTime %}	
 							<th id={{ i }}>{{i}}</th>
 						{% endfor %}
@@ -73,13 +73,12 @@
 							{% set num = num + 1 %}
 						{% endfor %}
 						<td>
-							<form method='update' action=''>
-								<input id = 'updateButton' type = 'button' value='update'>
-								
+							<form method= 'POST' action='/time/delete?_method=DELETE'>
+								<button type='submit'>
+									Delete
+								</button>
 							</form>
-							<!-- <button onclick="">수정</button> -->
 						</td>
-						
 					</tr>
 					{% endfor %}
 				</tbody>

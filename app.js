@@ -6,6 +6,7 @@ const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const passport = require('passport');
+const methodOverride = require('method-override');
 
 dotenv.config();
 const pageRouter = require('./routes/page');
@@ -46,6 +47,7 @@ app.use(session({
 		secure: false,
 	},
 }));
+app.use(methodOverride('_method'));
 
 app.use(passport.initialize());
 app.use(passport.session());
