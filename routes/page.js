@@ -50,6 +50,23 @@ router.get('/join', isNotLoggedIn, (req, res, next) => {
 	res.render('join', {title: 'join'});
 });
 
+router.get('/profile', async(req, res, next) => {
+	if(req.isAuthenticated()){
+		const user = req.user.name;
+		const userId = req.user.id;
+		const times = await Time.findAll({
+			where: {userId : userId}
+		});
+		const arr = [true, user, times];
+		//console.log('user' , user, times );
+		
+		res.json(arr);
+	}
+	else{
+		res.json(false);
+	}
+})
+
 //https://okky.kr/questions/704616
 
 

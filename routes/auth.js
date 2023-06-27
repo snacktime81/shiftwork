@@ -17,6 +17,7 @@ router.get('/status', (req, res, next) => {
 	}
 })
 
+
 router.post('/join', isNotLoggedIn, async(req, res, next) => {
 	const { name, email, password, authority } = req.body;
 	try{
