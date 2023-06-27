@@ -73,8 +73,8 @@
 							{% set num = num + 1 %}
 						{% endfor %}
 						<td>
-							<form method= 'POST' action='/time/delete?_method=DELETE'>
-								<button type='submit'>
+							<form method= 'POST' action='/time/{{time.id}}?_method=DELETE'>
+								<button type='submit' id='{{time.id}}'>
 									Delete
 								</button>
 							</form>

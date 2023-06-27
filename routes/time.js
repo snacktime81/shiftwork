@@ -18,7 +18,7 @@ router.get('/status', (req, res, next) => {
 	}
 });
 
-router.post('/make', async(req, res, next) => {
+router.post('/make', isLoggedAdmin, async(req, res, next) => {
 	try{
 		const {machine, day, name, starttime, endtime} = req.body;
 		const user = await User.findOne({where:{name}});
@@ -42,15 +42,24 @@ router.post('/make', async(req, res, next) => {
 
 })
 
-router.delete('/delete', (req, res, next) => {
+router.delete('/:id', isLoggedAdmin, async(req, res, next) => {
 	try{
-		console.log('qq')
-		res.json('q')
+		const id = req.params.id;
+		console.log(id);
+		
+		await Time.destroy({
+			where: {
+				id: id}
+		})
+		
+		res.redirect('/time/all');
 	}
-	catch(err){}
+	catch(err){
+		console.error(err);
+	}
 })
 
-router.get('/all', async(req, res, next) => {
+router.get('/all', isLoggedAdmin, async(req, res, next) => {
 	try{
 		const times = await Time.findAll({
 			include: [{
