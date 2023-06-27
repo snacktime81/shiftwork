@@ -1,7 +1,7 @@
-async function axiosExample() {
+async function axiosLoggedIn() {
 	const response = await axios.get('/auth/status');
 	return response;
-	}
+}
 
 async function axiosAuthStatus(){
 	const authStatus = await axios.get('/time/status');
@@ -9,7 +9,7 @@ async function axiosAuthStatus(){
 }
 
 
-axiosExample().then(function(re){
+axiosLoggedIn().then(function(re){
 
 	const status = re.data
 	if(status){
