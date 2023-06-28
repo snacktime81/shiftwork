@@ -56,9 +56,6 @@ axiosLoggedIn().then( function(re){
 		thead.appendChild(th);
 		
 		for( i of user[2]){
-
-
-			
 			
 			let tbody = document.createElement('tbody');
 	
@@ -90,9 +87,6 @@ axiosLoggedIn().then( function(re){
 			tr.appendChild(td);
 				
 		}
-		
-		
-		
 	}
 	
 })

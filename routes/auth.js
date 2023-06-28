@@ -21,11 +21,17 @@ router.get('/status', (req, res, next) => {
 router.post('/join', isNotLoggedIn, async(req, res, next) => {
 	const { name, email, password, authority } = req.body;
 	try{
-		console.log(name, email, password, authority);
+		//console.log(name, email, password, authority);
 		const exUser = await User.findOne({ where: { email } });
 		if(exUser){
-			console.log(exUser);
-			return res.redirect('/join?error=exist');
+			//console.log(exUser);
+			const url = '/join?error=exist';
+			return res.send(
+				  `<script>
+					alert('이미 존재하는 email입니다.');
+					location.href='${url}';
+				  </script>`
+				);
 		}
 		const hash = await bcrypt.hash(password, 12);
 		console.log('실행');
@@ -37,8 +43,9 @@ router.post('/join', isNotLoggedIn, async(req, res, next) => {
 		});
 		return res.redirect('/');
 	}
+
 	catch (err) {
-		console.error(err);
+		console.error('err',err);
 		return next(err);
 	}
 });

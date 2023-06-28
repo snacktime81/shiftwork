@@ -55,7 +55,8 @@ router.get('/profile', async(req, res, next) => {
 		const user = req.user.name;
 		const userId = req.user.id;
 		const times = await Time.findAll({
-			where: {userId : userId}
+			where: {userId : userId},
+			order: [['day', 'ASC'], ['starttime', 'ASC']]
 		});
 		const arr = [true, user, times];
 		//console.log('user' , user, times );
