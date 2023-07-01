@@ -9,8 +9,14 @@ const passport = require('passport');
 const methodOverride = require('method-override');
 const helmet = require('helemt');
 const hpp = require('hpp');  
+const redis = require('redis');
+const RedisStore = require('connect-redis')(session);
 
 dotenv.config();
+const redisClient = redis.createClient({
+	usl: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
+	password: process.env.REDIS_PASSWORD,
+});
 const pageRouter = require('./routes/page');
 const timeRouter = require('./routes/time');
 const authRouter = require('./routes/auth');
@@ -38,6 +44,8 @@ sequelize.sync({ force: false })
 
 if(process.env.NODE_ENV === 'production'){
 	app.use(morgan('combined'));
+	app.use(helmet({ contentSecurityPolicy: false }));
+	app.use(hpp());
 }
 else{
 	app.use(morgan('dev'));
@@ -54,6 +62,7 @@ app.use(session({
 		httpOnly: true,
 		secure: false,
 	},
+	store: new RedisStore({ client: redisClient}),
 }));
 app.use(methodOverride('_method'));
 
