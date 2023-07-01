@@ -3,3 +3,5 @@ node_modules/
 README.md
 config/
 goorm.manifest
+combined.log
+error.log

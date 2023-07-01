@@ -17,16 +17,19 @@ router.get('/', async(req, res, next) => {
 			  order: [['machine', 'ASC'], ['starttime', 'ASC']],
 			});
 		
-		const date = new Date();		
-		const nowMonth = date.getMonth();
+		const date = new Date();
+		//console.log(date);
+		const nowMonth = date.getMonth()+1;
 		const nowDay = date.getDate();
+		//console.log(nowMonth, nowDay);
 		console.log(new Date(date.getTime() + (2 * 60 * 60 * 1000)));
 		const deleteTime = async(id) => {
   			await Time.destroy({where: {id: id}}); 
-}
+		}
 		for(i of times){
-			const month = i.day.substring(5, 7) + 1;
+			const month = Number(i.day.substring(5, 7));
 			const day = i.day.substring(8,10);
+			//console.log('day:',month,'  now:',nowMonth);
 			//console.log( day, month);
 			//console.log('now', nowDay, nowMonth);
 			if(month < nowMonth){ 

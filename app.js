@@ -7,6 +7,8 @@ const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const passport = require('passport');
 const methodOverride = require('method-override');
+const helmet = require('helemt');
+const hpp = require('hpp');  
 
 dotenv.config();
 const pageRouter = require('./routes/page');
@@ -15,6 +17,7 @@ const authRouter = require('./routes/auth');
 const dateRouter = require('./routes/date');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
+const logger = require('./logger');
 
 const app = express();
 passportConfig();
@@ -33,7 +36,12 @@ sequelize.sync({ force: false })
     console.error(err);
   });
 
-app.use(morgan('dev'));
+if(process.env.NODE_ENV === 'production'){
+	app.use(morgan('combined'));
+}
+else{
+	app.use(morgan('dev'));
+}
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({extend:false}));
@@ -58,9 +66,11 @@ app.use('/auth', authRouter);
 app.use('/date', dateRouter);
 
 app.use((req, res, next) => {
-  const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
-  error.status = 404;
-  next(error);
+ 	const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
+ 	error.status = 404;
+	logger.info('hello');
+	logger.error(error.message);
+ 	next(error);
 })
 
 
