@@ -7,14 +7,15 @@ const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const passport = require('passport');
 const methodOverride = require('method-override');
-const helmet = require('helemt');
+const helmet = require('helmet');
 const hpp = require('hpp');  
 const redis = require('redis');
-const RedisStore = require('connect-redis')(session);
+const connectRedis = require('connect-redis');
+const RedisStore = connectRedis(session);
 
 dotenv.config();
 const redisClient = redis.createClient({
-	usl: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
+	url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
 	password: process.env.REDIS_PASSWORD,
 });
 const pageRouter = require('./routes/page');
