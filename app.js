@@ -10,7 +10,8 @@ const methodOverride = require('method-override');
 const helmet = require('helmet');
 const hpp = require('hpp');  
 const redis = require('redis');
-const RedisStore = require('connect-redis')(session);
+const connectRedis = require('connect-redis');
+const RedisStore = connectRedis(session);
 
 dotenv.config();
 const redisClient = redis.createClient({
