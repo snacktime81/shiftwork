@@ -7,14 +7,14 @@ const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const passport = require('passport');
 const methodOverride = require('method-override');
-const helmet = require('helemt');
+const helmet = require('helmet');
 const hpp = require('hpp');  
 const redis = require('redis');
 const RedisStore = require('connect-redis')(session);
 
 dotenv.config();
 const redisClient = redis.createClient({
-	usl: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
+	url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
 	password: process.env.REDIS_PASSWORD,
 });
 const pageRouter = require('./routes/page');
@@ -54,18 +54,26 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({extend:false}));
 app.use(cookieParser(process.env.COOKIE_SECRET));
-app.use(session({
+
+
+const sessionOption = {
 	resave: false,
-	saveUninitalized: false,
+	saveUninitialized: false,
 	secret: process.env.COOKIE_SECRET,
 	cookie: {
-		httpOnly: true,
-		secure: false,
+	httpOnly: true,
+	secure: false,
 	},
-	store: new RedisStore({ client: redisClient}),
-}));
+	store: new RedisStore({ client: redisClient }),
+};
+if (process.env.NODE_ENV === 'production') {
+	sessionOption.proxy = true;
+// sessionOption.cookie.secure = true;
+}
+
 app.use(methodOverride('_method'));
 
+app.use(session(sessionOption))
 app.use(passport.initialize());
 app.use(passport.session());
 
