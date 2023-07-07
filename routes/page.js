@@ -20,11 +20,11 @@ router.get('/', async(req, res, next) => {
 		const UTCdate = new Date();
 		const date = new Date(UTCdate.getTime() + ( 2 * 60 * 60 * 1000));
 		//console.log(date);
-		console.log(new Date())
+		console.log('date',new Date())
 		const nowMonth = date.getMonth()+1;
 		const nowDay = date.getDate();
 		//console.log(nowMonth, nowDay);
-		console.log(new Date(date.getTime() + (2 * 60 * 60 * 1000)));
+		console.log(new Date(UTCdate.getTime() + (2 * 60 * 60 * 1000)));
 		const deleteTime = async(id) => {
   			await Time.destroy({where: {id: id}}); 
 		}
