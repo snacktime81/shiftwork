@@ -17,7 +17,7 @@ router.get('/', async(req, res, next) => {
 			  order: [['machine', 'ASC'], ['starttime', 'ASC']],
 			});
 		
-		const date = new Date();
+		const date = new Date(date.getTime() + ( 2 * 60 * 60 * 1000));
 		//console.log(date);
 		const nowMonth = date.getMonth()+1;
 		const nowDay = date.getDate();
