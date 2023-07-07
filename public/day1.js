@@ -96,6 +96,7 @@ axiosDay1().then(function(re){
 
 			td = document.createElement('td');
 			td.innerHTML = time.User.name;
+			td.id='rl';
 
 			tr.appendChild(td);
 
