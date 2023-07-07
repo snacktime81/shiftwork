@@ -20,10 +20,10 @@ axiosDay1().then(function(re){
 	
 	thead.appendChild(tr);
 	
-	let th = document.createElement('th');
-	th.innerHTML = '날짜';
+	// let th = document.createElement('th');
+	// th.innerHTML = '날짜';
 	
-	thead.appendChild(th);
+	// thead.appendChild(th);
 	
 	th = document.createElement('th');
 	th.innerHTML = '장비';
@@ -84,10 +84,10 @@ axiosDay1().then(function(re){
 			
 			tbody.appendChild(tr);
 			
-			let td = document.createElement('td');
-			td.innerHTML = time.day;
+			// let td = document.createElement('td');
+			// td.innerHTML = time.day;
 
-			tr.appendChild(td);
+			// tr.appendChild(td);
 
 			td = document.createElement('td');
 			td.innerHTML = time.machine;
