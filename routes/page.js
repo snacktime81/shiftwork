@@ -17,8 +17,10 @@ router.get('/', async(req, res, next) => {
 			  order: [['machine', 'ASC'], ['starttime', 'ASC']],
 			});
 		
-		const date = new Date(date.getTime() + ( 2 * 60 * 60 * 1000));
+		const UTCdate = new Date();
+		const date = new Date(UTCdate.getTime() + ( 2 * 60 * 60 * 1000));
 		//console.log(date);
+		console.log(new Date())
 		const nowMonth = date.getMonth()+1;
 		const nowDay = date.getDate();
 		//console.log(nowMonth, nowDay);
