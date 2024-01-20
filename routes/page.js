@@ -7,7 +7,7 @@ const {Time, User} = require('../models');
 
 
 
-router.get('/', async(req, res, next) => {
+router.get('/', async(req, res) => {
 	try{
 		const times = await Time.findAll({
 			  include: [{
@@ -41,8 +41,17 @@ router.get('/', async(req, res, next) => {
 				deleteTime(i.id);
 			}
 		}
-		
-		res.render('main')
+
+		if(!req.isAuthenticated()){
+			res.render('main', {loginState: false})
+		}
+		else{
+			if(req.user.authority === 'admin'){
+				res.render('main', {loginState: true, authority: true})
+			} else{
+				res.render('main', {loginState: true, authority: false})
+			}
+		}
 	}
 	catch(err){
 		console.error(err);
@@ -72,8 +81,5 @@ router.get('/profile', async(req, res, next) => {
 		res.json(false);
 	}
 })
-
-//https://okky.kr/questions/704616
-
 
 module.exports = router;

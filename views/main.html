@@ -87,12 +87,44 @@
 			<div class='item'>
 				<h1> Day 1 </h1>
 			</div>
-		
+			{% if loginState %}
+				{% if authority %}
+				<div class='itemButton' id='login_button'>
+					
+					<form action="auth/logout" mehtod="GET" id="loginForm">
+						<input type="submit" value="로그아웃">
+					</form>
+				</div>
+				
+				<div class='itemButton2' id='join_button'>
+					<form action="/time" method="GET" id="joinForm">
+						<input type="submit" value="시간생성">
+					</form>
+				</div>
+				{% else %}
+				<div class='itemButton' id='login_button'>
+					
+					<form action="auth/logout" mehtod="GET" id="loginForm">
+						<input type="submit" value="로그아웃">
+					</form>
+				</div>
+				{% endif %}
+			
+			{% else %}
 			<div class='itemButton' id='login_button'>
+				
+				<form action="auth/login" mehtod="GET" id="loginForm">
+					<input type="submit" value="로그인">
+				</form>
 			</div>
 			
 			<div class='itemButton2' id='join_button'>
+				<form action="/join" method="GET" id="joinForm">
+					<input type="submit" value="회원가입">
+				</form>
 			</div>
+			{% endif %}
+			
 		</div>
 		
 		<div class='container'>
@@ -120,8 +152,8 @@
 		</div>
 		
 		
-		<script src="/script.js">	
-		</script>	
+		<!-- <script src="/script.js">	
+		</script>	 -->
 		<script src='/day1.js'>
 		</script>
 		<script src='/day2.js'>
